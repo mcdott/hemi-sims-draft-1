@@ -4,10 +4,10 @@ import hero1 from "../assets/hero1-full-original-4000px.jpg";
 import hero2 from "../assets/hero2-full-original-4000px.jpg";
 
 interface HeroProps {
-  scrollToSliders: () => void;
+  scrollToSketches: () => void;
 }
 
-const Hero: React.FC<HeroProps> = ({ scrollToSliders }) => {
+const Hero: React.FC<HeroProps> = ({ scrollToSketches }) => {
   const image1 = hero1;
   const image2 = hero2;
   const [heroImage, setHeroImage] = useState(image1);
@@ -68,7 +68,7 @@ const Hero: React.FC<HeroProps> = ({ scrollToSliders }) => {
       </button>
       <button
         className='try-the-sims absolute bottom-0 left-1/2 transform -translate-x-1/2 mb-1 px-8 py-1 text-white bg-blue-500 hover:bg-blue-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition-colors duration-300'
-        onClick={scrollToSliders}
+        onClick={scrollToSketches}
       >
         Try the sims <br />
         &darr;

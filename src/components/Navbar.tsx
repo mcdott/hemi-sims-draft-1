@@ -4,10 +4,10 @@ import React from "react";
 import { Link, useLocation } from "react-router-dom";
 
 interface NavbarProps {
-  scrollToSliders: () => void;
+  scrollToSketches: () => void;
 }
 
-const Navbar: React.FC<NavbarProps> = ({ scrollToSliders }) => {
+const Navbar: React.FC<NavbarProps> = ({ scrollToSketches }) => {
   const location = useLocation();
 
   return (
@@ -30,7 +30,7 @@ const Navbar: React.FC<NavbarProps> = ({ scrollToSliders }) => {
                 <li>
                   <button
                     className='focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50 transition-colors duration-300'
-                    onClick={scrollToSliders}
+                    onClick={scrollToSketches}
                   >
                     Simulations
                   </button>
