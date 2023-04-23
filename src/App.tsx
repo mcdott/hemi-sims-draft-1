@@ -3,16 +3,15 @@ import { HashRouter as Router, Route, Routes } from "react-router-dom";
 import "./App.css";
 import Hero from "./components/Hero";
 import Navbar from "./components/Navbar";
-import SketchList from "./components/SketchList"; // Update the import here
+import SketchList from "./components/SketchList";
 import Footer from "./components/Footer";
 import About from "./components/About";
 import Draw from "./components/Draw";
 
 function App() {
-  const sketchListRef = useRef<HTMLDivElement>(null); // Update the ref name
+  const sketchListRef = useRef<HTMLDivElement>(null);
 
   const scrollToSketchList = () => {
-    // Update the function name
     if (sketchListRef.current) {
       sketchListRef.current.scrollIntoView({ behavior: "smooth" });
     }

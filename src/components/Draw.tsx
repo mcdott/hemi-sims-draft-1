@@ -15,7 +15,11 @@ const Draw: React.FC<DrawProps> = () => {
       );
 
       return () => {
-        sketchInstance.remove();
+        // Find the canvas element within canvasRef.current and remove it
+        const canvasElement = canvasRef.current?.querySelector("canvas");
+        if (canvasElement) {
+          canvasElement.remove();
+        }
       };
     }
   }, []);
@@ -23,15 +27,6 @@ const Draw: React.FC<DrawProps> = () => {
   return (
     <div className='draw-container'>
       <div className='canvas-wrapper' ref={canvasRef}></div>
-      <div className='text-wrapper'>
-        <h1>Draw & Doodle</h1>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat.
-        </p>
-      </div>
     </div>
   );
 };

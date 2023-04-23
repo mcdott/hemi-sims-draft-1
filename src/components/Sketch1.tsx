@@ -1,9 +1,12 @@
-import React from "react";
-import Sketch from "react-p5";
+import React, { useEffect } from "react";
+import p5 from "p5";
 
-interface Sketch1Props {}
+interface Sketch1Props {
+  width: number;
+  height: number;
+}
 
-const Sketch1: React.FC<Sketch1Props> = () => {
+const Sketch1: React.FC<Sketch1Props> = ({ width, height }) => {
   let rectX = 0;
   let rectY = 0;
   let isMouseWithinCanvas = false;
@@ -27,8 +30,8 @@ const Sketch1: React.FC<Sketch1Props> = () => {
     { name: "purple", x: 50, y: 350 },
   ];
 
-  const setup = (p5: any, canvasParentRef: any) => {
-    p5.createCanvas(p5.windowWidth, p5.windowHeight).parent(canvasParentRef);
+  const setup = (p5: any) => {
+    p5.createCanvas(width, height).parent("canvas-container");
   };
 
   const draw = (p5: any) => {
@@ -108,15 +111,32 @@ const Sketch1: React.FC<Sketch1Props> = () => {
     p5.resizeCanvas(p5.windowWidth, p5.windowHeight);
   };
 
-  return (
-    <Sketch
-      setup={setup}
-      draw={draw}
-      mousePressed={mousePressed}
-      mouseReleased={mouseReleased}
-      windowResized={windowResized}
-    />
-  );
+  const myP5 = (sketch: p5) => {
+    sketch.setup = () => {
+      setup(sketch);
+    };
+
+    sketch.draw = () => {
+      draw(sketch);
+    };
+
+    sketch.mousePressed = () => {
+      mousePressed(sketch);
+    };
+
+    sketch.mouseReleased = () => {
+      mouseReleased(sketch);
+    };
+  };
+
+  useEffect(() => {
+    const myInstance = new p5(myP5);
+    return () => {
+      myInstance.remove();
+    };
+  }, []);
+
+  return <div id='canvas-container' />;
 };
 
 export default Sketch1;

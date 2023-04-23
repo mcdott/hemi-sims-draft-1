@@ -17,11 +17,6 @@
   left: 0;
 }
 
-.text-wrapper {
-  text-align: center;
-  padding: 1rem;
-}
-
 @media (min-width: 768px) {
   .draw-container {
     flex-direction: row;
@@ -29,9 +24,5 @@
 
   .canvas-wrapper {
     flex: 2;
-  }
-
-  .text-wrapper {
-    flex: 1;
   }
 }

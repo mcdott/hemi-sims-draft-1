@@ -1,4 +1,5 @@
-import React, { useRef, useEffect, useState } from "react";
+import React, { useRef } from "react";
+import useResizeObserver from "use-resize-observer";
 import Sketch1 from "./Sketch1";
 
 const Sketch: React.FC<{
@@ -15,7 +16,7 @@ const Sketch: React.FC<{
     <div className='w-full md:w-2/3'>
       <div
         id={sketchId}
-        className='w-full h-96 bg-gray-300 rounded-lg shadow-md mb-6 md:mb-0'
+        className='w-full h-96 rounded-lg shadow-md mb-6 md:mb-0'
       >
         {children}
       </div>
@@ -31,15 +32,31 @@ const Sketch: React.FC<{
 );
 
 const SketchList = () => {
+  const sketchRef = useRef<HTMLDivElement>(null);
+  const { width, height } = useResizeObserver({ ref: sketchRef });
+
   return (
     <div className='container mx-auto px-4 py-12'>
       <Sketch position='left' sketchId='sketch1' title='Draw & Doodle'>
-        <Sketch1 />
+        <div ref={sketchRef}>
+          {width && height && <Sketch1 width={width} height={height} />}
+        </div>
       </Sketch>
       {/* ... (rest of the Sketch components) */}
     </div>
   );
 };
+
+// const SketchList = () => {
+//   return (
+//     <div className='container mx-auto px-4 py-12'>
+//       <Sketch position='left' sketchId='sketch1' title='Draw & Doodle'>
+//         <Sketch1 />
+//       </Sketch>
+//       {/* ... (rest of the Sketch components) */}
+//     </div>
+//   );
+// };
 
 // const SketchList = () => {
 //   return (
